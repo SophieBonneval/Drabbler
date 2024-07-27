@@ -1,0 +1,66 @@
+@use 'sass:math';
+
+// Colors
+$primary: #fe7f4c;
+$primary-lt: #FFB699;
+$primary-dk: #CC663D;
+$secondary: #52c99e;
+$secondary-lt: #95D2BC;
+$secondary-dk: #3E9676;
+$accent-blue: #1cc7ed;
+$accent-blue-lt: #65D7F0;
+$accent-blue-dk: #169CBA;
+$accent-yellow: #ffcf17;
+$accent-yellow-lt: #FFE063;
+$accent-yellow-dk: #CCA712;
+$accent-purple: #594FC2;
+$accent-purple-lt: lighten(#594FC2, 30%);
+$accent-purple-dk: darken(#594FC2, 30%);
+
+$primary-bg: #fff2ec;
+$secondary-bg: #edf9f5;
+$accent-blue-bg: #0d1618;
+$accent-yellow-bg: #fffae7;
+
+// Greyscale
+$black: #0f0f0f;
+$greyscale-1: #131f20;
+$greyscale-2: #1a2c2b;
+$greyscale-3: #666666;
+$greyscale-4: #aaaaaa;
+$greyscale-5: #ececec;
+$white: #ffffff;
+
+
+// Spaces
+$base-spacing: 16px;
+$one-and-half-spacing: ($base-spacing * 1.5); // 24px
+$double-spacing: ($base-spacing * 2); // 32px
+$two-and-half-spacing: ($base-spacing * 2.5); // 40px
+$half-spacing: math.div($base-spacing, 2); // 8px
+$small-spacing: math.div($half-spacing, 2); // 4px
+
+// Headings
+$micro-font-size: 12px;
+$small-font-size: 14px;
+$base-font-size: 16px;
+
+$h5-font-size: 18px;
+$h4-font-size: 20px;
+$h3-font-size: 24px;
+$h2-font-size: 32px;
+$h1-font-size: 52px;
+
+$base-font-family: 'Nunito', sans-serif;
+
+// breakpoints
+$page-width: 1232px;
+$page-width-narrow: 826px;
+$page-width-small: 440px;
+
+$mob-start: 360px;
+$palm-start: 600px;
+$lap-start: 750px;
+$desk-start: 900px;
+$large-start: 1000px;
+$wide-start: 1200px;
