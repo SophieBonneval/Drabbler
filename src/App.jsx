@@ -1,5 +1,7 @@
+import Header from "./components/Header/Header";
+
 function App() {
-  return <div>Drabbler Incoming</div>;
+  return (<div><Header /></div>);
 }
 
 export default App;
