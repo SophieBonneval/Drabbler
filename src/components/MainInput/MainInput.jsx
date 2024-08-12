@@ -1,4 +1,5 @@
 import { useRef } from 'react';
+import classes from './MainInput.module.scss'
 import Quill from 'quill';
 import QuillEditor from './QuillEditor';
 
@@ -7,7 +8,7 @@ function MainInput() {
   const quillRef = useRef();
 
   return (
-    <section>
+    <section className={classes['container']}>
       <QuillEditor ref={quillRef} defaultValue={new Delta()} />
     </section>
   );

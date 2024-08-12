@@ -1,5 +1,10 @@
 @use 'sass:math';
 
+// Drabbler palette
+$white: #E7ECF4;
+$color-bg: #ADCCD9;
+$black: #2E3B40;
+
 // Colors
 $primary: #fe7f4c;
 $primary-lt: #FFB699;
@@ -23,13 +28,13 @@ $accent-blue-bg: #0d1618;
 $accent-yellow-bg: #fffae7;
 
 // Greyscale
-$black: #0f0f0f;
+$pure-black: #0f0f0f;
 $greyscale-1: #131f20;
 $greyscale-2: #1a2c2b;
 $greyscale-3: #666666;
 $greyscale-4: #aaaaaa;
 $greyscale-5: #ececec;
-$white: #ffffff;
+$pure-white: #ffffff;
 
 
 // Spaces
