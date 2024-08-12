@@ -1,0 +1,8 @@
+.container {
+    display: flex;
+    justify-content: center;
+    padding: $half-spacing $base-spacing;
+    background-color: $color-bg;
+    font-size: $micro-font-size;
+    color: $black;
+}

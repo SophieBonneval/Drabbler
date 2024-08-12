@@ -1,7 +1,7 @@
 import classes from './Header.module.scss';
 
 function Header() {
-  return <div className={classes['container']}>Drabbler</div>;
+  return <header className={classes['container']}>Drabbler</header>;
 }
 
 export default Header;
