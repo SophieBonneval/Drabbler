@@ -1,65 +1,41 @@
-import { forwardRef, useEffect, useLayoutEffect, useRef } from 'react';
+import { forwardRef, useEffect, useRef } from 'react';
 import Quill from 'quill';
 import PropTypes from 'prop-types';
 import 'quill/dist/quill.snow.css';
 
-const QuillEditor = forwardRef(
-  ({ readOnly, defaultValue, onTextChange, onSelectionChange }, ref) => {
-    const containerRef = useRef(null);
-    const defaultValueRef = useRef(defaultValue);
-    const onTextChangeRef = useRef(onTextChange);
-    const onSelectionChangeRef = useRef(onSelectionChange);
+const QuillEditor = forwardRef(({ defaultValue }, ref) => {
+  const containerRef = useRef(null);
+  const defaultValueRef = useRef(defaultValue);
 
-    useLayoutEffect(() => {
-      onTextChangeRef.current = onTextChange;
-      onSelectionChangeRef.current = onSelectionChange;
+  useEffect(() => {
+    const container = containerRef.current;
+    const editorContainer = container.appendChild(
+      container.ownerDocument.createElement('article')
+    );
+    const quill = new Quill(editorContainer, {
+      theme: 'snow',
+      placeholder: 'Write something...',
     });
 
-    useEffect(() => {
-      ref.current?.enable(!readOnly);
-    }, [ref, readOnly]);
+    ref.current = quill;
 
-    useEffect(() => {
-      const container = containerRef.current;
-      const editorContainer = container.appendChild(
-        container.ownerDocument.createElement('article')
-      );
-      const quill = new Quill(editorContainer, {
-        theme: 'snow',
-        placeholder: 'Write something...',
-      });
+    if (defaultValueRef.current) {
+      quill.setContents(defaultValueRef.current);
+    }
 
-      ref.current = quill;
+    return () => {
+      ref.current = null;
+      container.innerHTML = '';
+    };
+  }, [ref]);
 
-      if (defaultValueRef.current) {
-        quill.setContents(defaultValueRef.current);
-      }
-
-      quill.on(Quill.events.TEXT_CHANGE, (...args) => {
-        onTextChangeRef.current?.(...args);
-      });
-
-      quill.on(Quill.events.SELECTION_CHANGE, (...args) => {
-        onSelectionChangeRef.current?.(...args);
-      });
-
-      return () => {
-        ref.current = null;
-        container.innerHTML = '';
-      };
-    }, [ref]);
-
-    return <section ref={containerRef}></section>;
-  }
-);
+  return <section ref={containerRef}></section>;
+});
 
 QuillEditor.displayName = 'Editor';
 
 export default QuillEditor;
 
 QuillEditor.propTypes = {
-  readOnly: PropTypes.bool,
   defaultValue: PropTypes.object,
-  onTextChange: PropTypes.func,
-  onSelectionChange: PropTypes.func,
 };
