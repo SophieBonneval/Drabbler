@@ -1,3 +1,9 @@
 .container {
     background-color: $pure-white;
+    max-width: $desk-start;
+    margin: 0 auto $base-spacing;
+
+    :global(.ql-container.ql-snow) {
+        min-height: 168px;
+    }
 }
