@@ -1,15 +1,19 @@
-import { useRef } from 'react';
-import classes from './MainInput.module.scss'
-import Quill from 'quill';
-import QuillEditor from './QuillEditor';
+import classes from "./MainInput.module.scss";
+import { useRef } from "react";
+import Quill from "quill";
+import QuillEditor from "./QuillEditor";
 
-function MainInput() {
-  const Delta = Quill.import('delta');
+function MainInput({ wordCount }) {
+  const Delta = Quill.import("delta");
   const quillRef = useRef();
 
   return (
-    <section className={classes['container']}>
-      <QuillEditor ref={quillRef} defaultValue={new Delta()} />
+    <section className={classes["container"]}>
+      <QuillEditor
+        wordCount={wordCount}
+        ref={quillRef}
+        defaultValue={new Delta()}
+      />
     </section>
   );
 }
