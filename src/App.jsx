@@ -1,10 +1,10 @@
-import { useState } from "react";
-import classes from "./App.module.scss";
+import { useState } from 'react';
+import classes from './App.module.scss';
 
-import Footer from "./components/Footer/Footer";
-import Header from "./components/Header/Header";
-import MainInput from "./components/MainInput/MainInput";
-import WordCounter from "./components/WordCounter/WordCounter";
+import Footer from './components/Footer/Footer';
+import Header from './components/Header/Header';
+import MainInput from './components/MainInput/MainInput';
+import WordCounter from './components/WordCounter/WordCounter';
 
 function App() {
   const [wordCountValue, setWordCountValue] = useState(0);
@@ -14,7 +14,7 @@ function App() {
   }
 
   return (
-    <div className={classes["container"]}>
+    <div className={classes['App__container']}>
       <Header />
       <main>
         <WordCounter wordCountValue={wordCountValue} />
