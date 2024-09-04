@@ -2,6 +2,7 @@
     background-color: $pure-white;
     max-width: $desk-start;
     margin: 0 auto $base-spacing;
+    position: relative;
 
     :global(.ql-container.ql-snow, .ql-editor) {
         min-height: 168px;

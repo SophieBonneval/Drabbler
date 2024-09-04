@@ -24,7 +24,7 @@ function MainInput({ wordCount }) {
           wordCount(wordCountValue);
         }
 
-        setInputValue(quill.root.innerText);
+        setInputValue(quill.root.innerText.replaceAll('\n\n', '\n'));
       }
     }
 
