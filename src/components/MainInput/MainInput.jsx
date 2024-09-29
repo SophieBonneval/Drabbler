@@ -41,10 +41,20 @@ function MainInput({ wordCount }) {
     //rerender whenever it changes, even if it probably won't happen
   }, [quillRef, wordCount]);
 
+  const SelectAllAndPasteHandle = () => {
+    const quill = quillRef.current;
+
+    quill.focus();
+    quill.setSelection(0, quill.getLength());
+    document.execCommand('copy');
+    quill.setSelection(quill.getLength(), quill.getLength());
+  };
+
   return (
     <section className={classes['MainInput__container']}>
       <QuillEditor ref={quillRef} defaultValue={new Delta()} />
       <CopyButton inputValue={inputValue} />
+      <button onClick={SelectAllAndPasteHandle}>Copy</button>
     </section>
   );
 }
