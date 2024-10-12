@@ -1,4 +1,5 @@
 @use 'sass:math';
+@use 'sass:color';
 
 // Drabbler palette
 $white: #E7ECF4;
@@ -19,8 +20,8 @@ $accent-yellow: #ffcf17;
 $accent-yellow-lt: #FFE063;
 $accent-yellow-dk: #CCA712;
 $accent-purple: #594FC2;
-$accent-purple-lt: lighten(#594FC2, 30%);
-$accent-purple-dk: darken(#594FC2, 30%);
+$accent-purple-lt: color.adjust($accent-purple, $lightness: 30%);
+$accent-purple-dk: color.adjust($accent-purple, $lightness: -30%);
 
 $primary-bg: #fff2ec;
 $secondary-bg: #edf9f5;
