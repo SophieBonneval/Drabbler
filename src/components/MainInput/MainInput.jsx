@@ -2,6 +2,7 @@ import { useRef, useState } from 'react';
 import { Editor } from '@tinymce/tinymce-react';
 import classes from './MainInput.module.scss';
 import PropTypes from 'prop-types';
+import CopyButton from '../CopyButton/CopyButton';
 
 function MainInput({ inputText }) {
   const editorRef = useRef(null);
@@ -16,6 +17,15 @@ function MainInput({ inputText }) {
       inputText(editor.getContent({ format: 'text' }));
     }
   };
+
+  function handleSelectAndCopy() {
+    // Before selecting, put the focus on the text
+    if (editorRef.current) {
+      editorRef.current.focus();
+      editorRef.current.selection.select(editorRef.current.getBody(), true);
+      document.execCommand('copy');
+    }
+  }
 
   return (
     <section className={classes['MainInput__container']}>
@@ -59,6 +69,7 @@ function MainInput({ inputText }) {
         }}
         value={editorValue}
       />
+      <CopyButton handleSelectAndCopy={handleSelectAndCopy} />
     </section>
   );
 }
