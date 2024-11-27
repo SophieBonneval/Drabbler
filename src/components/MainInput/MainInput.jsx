@@ -19,11 +19,18 @@ function MainInput({ inputText }) {
   };
 
   function handleSelectAndCopy() {
-    // Before selecting, put the focus on the text
     if (editorRef.current) {
+      // Before selecting, put the focus on the text
       editorRef.current.focus();
+
+      // Select the text
       editorRef.current.selection.select(editorRef.current.getBody(), true);
-      document.execCommand('copy');
+
+      // Copy the selected text
+      editorRef.current.execCommand('copy');
+
+      // Unselect the text
+      editorRef.current.selection.collapse();
     }
   }
 
@@ -56,11 +63,10 @@ function MainInput({ inputText }) {
             'help',
             'wordcount',
           ],
-          toolbar:
-            'undo redo | blocks | ' +
-            'bold italic forecolor | alignleft aligncenter ' +
-            'alignright alignjustify | bullist numlist outdent indent | ' +
-            'removeformat | help',
+          wordCount: false,
+          elementpath: false,
+          branding: false,
+          toolbar: 'undo redo |' + 'bold italic underline',
           content_style:
             'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }',
         }}
@@ -77,5 +83,5 @@ function MainInput({ inputText }) {
 export default MainInput;
 
 MainInput.propTypes = {
-  wordCount: PropTypes.func,
+  inputText: PropTypes.func,
 };
