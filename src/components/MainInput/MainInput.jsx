@@ -2,6 +2,7 @@ import { useRef, useState } from 'react';
 import { Editor } from '@tinymce/tinymce-react';
 import classes from './MainInput.module.scss';
 import PropTypes from 'prop-types';
+import CopyButton from '../CopyButton/CopyButton';
 
 function MainInput({ inputText }) {
   const editorRef = useRef(null);
@@ -16,6 +17,22 @@ function MainInput({ inputText }) {
       inputText(editor.getContent({ format: 'text' }));
     }
   };
+
+  function handleSelectAndCopy() {
+    if (editorRef.current) {
+      // Before selecting, put the focus on the text
+      editorRef.current.focus();
+
+      // Select the text
+      editorRef.current.selection.select(editorRef.current.getBody(), true);
+
+      // Copy the selected text
+      editorRef.current.execCommand('copy');
+
+      // Unselect the text
+      editorRef.current.selection.collapse();
+    }
+  }
 
   return (
     <section className={classes['MainInput__container']}>
@@ -46,11 +63,10 @@ function MainInput({ inputText }) {
             'help',
             'wordcount',
           ],
-          toolbar:
-            'undo redo | blocks | ' +
-            'bold italic forecolor | alignleft aligncenter ' +
-            'alignright alignjustify | bullist numlist outdent indent | ' +
-            'removeformat | help',
+          wordCount: false,
+          elementpath: false,
+          branding: false,
+          toolbar: 'undo redo |' + 'bold italic underline',
           content_style:
             'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }',
         }}
@@ -59,6 +75,7 @@ function MainInput({ inputText }) {
         }}
         value={editorValue}
       />
+      <CopyButton handleSelectAndCopy={handleSelectAndCopy} />
     </section>
   );
 }
@@ -66,5 +83,5 @@ function MainInput({ inputText }) {
 export default MainInput;
 
 MainInput.propTypes = {
-  wordCount: PropTypes.func,
+  inputText: PropTypes.func,
 };
