@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Editor } from '@tinymce/tinymce-react';
 import classes from './MainInput.module.scss';
 import PropTypes from 'prop-types';
@@ -6,17 +6,23 @@ import CopyButton from '../CopyButton/CopyButton';
 
 function MainInput({ inputText }) {
   const editorRef = useRef(null);
-  const [editorValue, setEditorValue] = useState('');
+  const [editorValue, setEditorValue] = useState('This is the initial content of the editor');
+  
+  // useEffect(() => {
+  //   console.log('Im in useEffect!');
+  //   console.log(editorRef.current && editorRef.current.getContent({ format: 'text' }))
+  // }, [])
 
+  console.log('MainInput editorValue', editorValue)
   const handleEditorChange = (newValue, editor) => {
     setEditorValue(newValue);
-
     // Whenever you change the text, you want the inputText prop to be updated:
     // But first, you need to check its existence, because they're not mandatory
     if (inputText) {
       inputText(editor.getContent({ format: 'text' }));
     }
   };
+
 
   function handleSelectAndCopy() {
     if (editorRef.current) {

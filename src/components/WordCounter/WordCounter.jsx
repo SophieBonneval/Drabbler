@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import classNames from 'classnames';
 import classes from './WordCounter.module.scss';
 
 function WordCounter({ inputText }) {
@@ -6,13 +7,21 @@ function WordCounter({ inputText }) {
 
   // the useEffect will refresh whenever the value of the dependencies (second argum.) changes
   useEffect(() => {
+    console.log('INPUTTEXT', inputText); 
+    const wordCountValue = inputText.trim().split(/\s+/).length;
+    setWordCount(wordCountValue);
     if (inputText) {
-      setWordCount(inputText.trim().split(/\s+/).length);
+      const wordCountValue = inputText.trim().split(/\s+/).length;
+      setWordCount(wordCountValue);
+      console.log('WORDCOUNTVALUE', wordCountValue);
+      console.log('WORDCOUNT', wordCount); 
     }
   }, [inputText]);
 
   return (
-    <div className={classes['WordCounter__container']}>{wordCount} Words</div>
+    <div className={classNames(classes['WordCounter__container'], {
+      [classes['WordCounter__green']]: true
+    })}>{wordCount} Words</div>
   );
 }
 

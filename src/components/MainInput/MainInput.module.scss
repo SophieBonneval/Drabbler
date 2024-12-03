@@ -4,10 +4,6 @@
     margin: 0 auto $base-spacing;
     position: relative;
 
-    :global(.ql-container.ql-snow, .ql-editor) {
-        min-height: 168px;
-    }
-
     :global(.tox-statusbar__wordcount) {
         display: none;
     }
