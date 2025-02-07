@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
-import classes from './WordCounter.module.scss';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import { useEffect, useState } from "react";
+import classes from "./WordCounter.module.scss";
+import PropTypes from "prop-types";
+import classNames from "classnames";
 
 function WordCounter({ inputText }) {
   const [wordCount, setWordCount] = useState(0);
@@ -22,8 +22,8 @@ function WordCounter({ inputText }) {
 
   return (
     <div
-      className={classNames(classes['WordCounter__container'], {
-        [classes['WordCounter__green']]: wordCount === 100,
+      className={classNames(classes["WordCounter__container"], {
+        [classes["WordCounter__green"]]: wordCount === 100,
       })}
     >
       {wordCount} Words
