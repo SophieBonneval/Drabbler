@@ -1,5 +1,4 @@
 .MainInput__container {
-    background-color: $pure-white;
     max-width: $desk-start;
     margin: 0 auto $base-spacing;
     position: relative;
@@ -14,5 +13,9 @@
 
     :global(.tox-statusbar__help-text) {
         display: none;
+    }
+
+    :global(.tox .tox-edit-area::before) {
+        border: 1px solid $primary;
     }
 }

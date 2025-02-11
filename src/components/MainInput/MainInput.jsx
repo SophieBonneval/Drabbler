@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import CopyButton from "../CopyButton/CopyButton";
 
 function MainInput({ inputText }) {
-  const initialValue = "This is the initial content of the editor.";
+  const initialValue = "";
   const editorRef = useRef(null);
   const [editorValue, setEditorValue] = useState(initialValue);
 
@@ -31,6 +31,7 @@ function MainInput({ inputText }) {
   }
 
   const handleInit = (evt, editor) => {
+    editorRef.current = editor;
     editor.on(
       "paste",
       function (e) {
@@ -152,6 +153,7 @@ function MainInput({ inputText }) {
           toolbar: "undo redo |" + "bold italic underline",
           content_style:
             "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
+          auto_focus: true,
         }}
         onEditorChange={(newValue, editor) => {
           handleEditorChange(newValue, editor);
