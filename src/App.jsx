@@ -8,16 +8,21 @@ import WordCounter from './components/WordCounter/WordCounter';
 
 function App() {
   const [inputText, setInputText] = useState('');
+  const [isDrabble, setIsDrabble] = useState(false);
 
   function handleInputText(text) {
     setInputText(text);
   }
 
+  function handleIsDrabble(boolean) {
+    setIsDrabble(boolean);
+  }
+
   return (
     <div className={classes['App__container']}>
       <Header />
-      <main>
-        <WordCounter inputText={inputText} />
+      <main className={isDrabble ? classes['background-colour'] : ''}>
+        <WordCounter inputText={inputText} isDrabble={handleIsDrabble} />
         <MainInput inputText={handleInputText} />
       </main>
       <Footer />

@@ -8,4 +8,8 @@ main {
     flex: 1 0 0;
     padding: $base-spacing $base-spacing;
     background-color: $white;
+
+    &.background-colour{
+        background-color: #8fd14f;
+    }
 }
