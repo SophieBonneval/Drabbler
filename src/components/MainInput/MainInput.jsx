@@ -132,6 +132,7 @@ function MainInput({ inputText }) {
           plugins: [
             "advlist",
             "autolink",
+            'autosave',
             "lists",
             "image",
             "charmap",
@@ -147,6 +148,10 @@ function MainInput({ inputText }) {
             "help",
             "wordcount",
           ],
+          autosave_interval: '5s',
+          autosave_restore_when_empty: true,
+          autosave_ask_before_unload: false,
+          autosave_prefix: 'editorContent',
           wordCount: false,
           elementpath: false,
           branding: false,
