@@ -1,11 +1,15 @@
 .App__container {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
 }
 
 main {
-    flex: 1 0 0;
-    padding: $base-spacing $base-spacing;
-    background-color: $white;
+  flex: 1 0 0;
+  padding: $base-spacing $base-spacing;
+  background-color: $white;
+
+  &.background__green {
+    background-color: #e7f5e5;
+  }
 }

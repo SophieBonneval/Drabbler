@@ -1,11 +1,9 @@
 import { useEffect, useState } from 'react';
 import classes from './WordCounter.module.scss';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 
-function WordCounter({ inputText }) {
+function WordCounter({ inputText, isDrabble }) {
   const [wordCount, setWordCount] = useState(0);
-  const [isDrabble, setIsDrabble] = useState(false);
 
   // the useEffect will refresh whenever the value of the dependencies (second argum.) changes
   useEffect(() => {
@@ -22,23 +20,17 @@ function WordCounter({ inputText }) {
     // Handles the delayed class:
     if (newWordCountValue === 100) {
       setTimeout(() => {
-        setIsDrabble(true);
+        isDrabble(true);
       }, '1500');
     } else {
       setTimeout(() => {
-        setIsDrabble(false);
+        isDrabble(false);
       }, '1500');
     }
   }, [inputText]);
 
   return (
-    <div
-      className={classNames(classes['WordCounter__container'], {
-        [classes['WordCounter__green']]: isDrabble,
-      })}
-    >
-      {wordCount} Words
-    </div>
+    <div className={classes['WordCounter__container']}>{wordCount} Words</div>
   );
 }
 
@@ -46,4 +38,5 @@ export default WordCounter;
 
 WordCounter.propTypes = {
   inputText: PropTypes.string,
+  isDrabble: PropTypes.func,
 };
