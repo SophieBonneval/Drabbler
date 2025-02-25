@@ -2,7 +2,6 @@ import { useRef, useState } from "react";
 import { Editor } from "@tinymce/tinymce-react";
 import classes from "./MainInput.module.scss";
 import PropTypes from "prop-types";
-import CopyButton from "../CopyButton/CopyButton";
 
 function MainInput({ inputText }) {
   const initialValue = "";
@@ -17,21 +16,45 @@ function MainInput({ inputText }) {
     }
   };
 
-  function handleSelectAndCopy() {
-    if (editorRef.current) {
-      // Before selecting, put the focus on the text
-      editorRef.current.focus();
-      // Select the text
-      editorRef.current.selection.select(editorRef.current.getBody(), true);
-      // Copy the selected text
-      editorRef.current.execCommand("copy");
-      // Unselect the text
-      editorRef.current.selection.collapse();
-    }
-  }
-
   const handleInit = (evt, editor) => {
     editorRef.current = editor;
+
+    // Declaring cut toolbar button
+    editor.ui.registry.addButton('cutAll', {
+      icon: 'cut',
+      tooltip: 'Cut all content',
+      enabled: true,
+      onAction: () => {
+        if (editorRef.current) {
+          // Before selecting, put the focus on the text
+          editorRef.current.focus();
+          // Select the text
+          editorRef.current.selection.select(editorRef.current.getBody(), true);
+          // Cut the selected text
+          editorRef.current.execCommand("cut");
+        }
+      },
+    });
+
+    // Declaring copy toolbar button
+    editor.ui.registry.addButton('copyAll', {
+      icon: 'copy',
+      tooltip: 'Copy all content',
+      enabled: true,
+      onAction: () => {
+        if (editorRef.current) {
+          // Before selecting, put the focus on the text
+          editorRef.current.focus();
+          // Select the text
+          editorRef.current.selection.select(editorRef.current.getBody(), true);
+          // Copy the selected text
+          editorRef.current.execCommand("copy");
+          // Unselect the text
+          editorRef.current.selection.collapse();
+        }
+      },
+    });
+
     editor.on(
       "paste",
       function (e) {
@@ -155,7 +178,12 @@ function MainInput({ inputText }) {
           wordCount: false,
           elementpath: false,
           branding: false,
-          toolbar: "undo redo |" + "bold italic underline",
+          toolbar: [
+            { name: 'history', items: ['undo', 'redo'] },
+            { name: 'formatting', items: ['bold', 'italic', 'underline'] },
+            { name: 'tools', items: ['cutAll', 'copyAll'] }
+          ],
+          toolbar_sticky: true,
           content_style:
             "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
           auto_focus: true,
@@ -165,7 +193,6 @@ function MainInput({ inputText }) {
         }}
         value={editorValue}
       />
-      <CopyButton handleSelectAndCopy={handleSelectAndCopy} />
     </section>
   );
 }
